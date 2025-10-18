@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - E-Waste Connect</title>
+  <style>
+    body {font-family: Arial, sans-serif;margin: 0;background-color: rgba(243,244,246,0.7); background-image: url('https://loremflickr.com/1920/1080/login'); background-size: cover; background-attachment: fixed; background-position: center;}
+    header {background-color: #2e7d32;color: white;padding: 15px;text-align: center;}
+    nav {background-color: #4caf50;padding: 10px;text-align: center;}
+    nav a {color: white;margin: 0 15px;text-decoration: none;font-weight: bold;}
+    nav a:hover {text-decoration: underline;}
+    .container {max-width: 400px;margin: 40px auto;background: white;padding: 25px;border-radius: 10px;box-shadow: 0 0 10px rgba(0,0,0,0.1);}
+    h2 {text-align: center;color: #333;}
+    label {font-weight: bold;}
+    input, button {width: 100%;margin-top: 8px;margin-bottom: 15px;padding: 10px;border-radius: 6px;border: 1px solid #ccc;}
+    button {background-color: #2e7d32;color: white;cursor: pointer;transition: 0.3s;}
+    button:hover {background-color: #1b5e20;}
+    .flash {color: red;text-align: center;}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>E-Waste Connect</h1>
+    <p>Connecting Households with Formal E-Waste Recyclers</p>
+  </header>
+
+  <nav>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/services">Services</a>
+    <a href="/contact">Contact</a>
+    <a href="/login">Login</a>
+    <a href="/register">Register</a>
+    <a href="/recycler_login">Recycler Login</a>
+  </nav>
+
+  <div class="container">
+    <h2>Household Login</h2>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash">
+          {% for message in messages %}
+            {{ message }}
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    <form method="POST">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" required />
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required />
+      <button type="submit">Login</button>
+    </form>
+    <p style="text-align: center;">Don't have an account? <a href="/register">Register here</a></p>
+  </div>
+</body>
+</html>

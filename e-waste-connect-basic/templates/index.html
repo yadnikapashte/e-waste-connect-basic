@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E-Waste Connect</title>
+  <style>
+    body {font-family: Arial, sans-serif;margin: 0;background-color: rgba(243,244,246,0.7); background-image: url('https://loremflickr.com/1920/1080/recycling'); background-size: cover; background-attachment: fixed; background-position: center;}
+    header {background-color: #2e7d32;color: white;padding: 15px;text-align: center;}
+    .container {max-width: 600px;margin: 40px auto;background: white;padding: 25px;border-radius: 10px;box-shadow: 0 0 10px rgba(0,0,0,0.1);}
+    h2 {text-align: center;color: #333;}
+    label {font-weight: bold;}
+    input, select, textarea, button {width: 100%;margin-top: 8px;margin-bottom: 15px;padding: 10px;border-radius: 6px;border: 1px solid #ccc;}
+    button {background-color: #2e7d32;color: white;cursor: pointer;transition: 0.3s;}
+    button:hover {background-color: #1b5e20;}
+    .success {color: green;text-align: center;font-weight: bold;}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>E-Waste Connect</h1>
+    <p>Connecting Households with Formal E-Waste Recyclers</p>
+  </header>
+  <!-- Add this -->
+<div style="text-align:center; margin: 10px 0;">
+<img src="{{ url_for('static', filename='image/e-waste-image.jpg') }}" alt="E-Waste Logo" style="max-width:1000px; height:250px;">
+
+</div>
+
+  <nav style="background-color: #4caf50;padding: 10px;text-align: center;">
+    <a href="/" style="color: white;margin: 0 15px;text-decoration: none;font-weight: bold;">Home</a>
+    <a href="/about" style="color: white;margin: 0 15px;text-decoration: none;font-weight: bold;">About</a>
+    <a href="/services" style="color: white;margin: 0 15px;text-decoration: none;font-weight: bold;">Services</a>
+    <a href="/contact" style="color: white;margin: 0 15px;text-decoration: none;font-weight: bold;">Contact</a>
+    <a href="/login" style="color: white;margin: 0 15px;text-decoration: none;font-weight: bold;">Login</a>
+    <a href="/register" style="color: white;margin: 0 15px;text-decoration: none;font-weight: bold;">Register</a>
+    <a href="/recycler_login" style="color: white;margin: 0 15px;text-decoration: none;font-weight: bold;">Recycler Login</a>
+  </nav>
+
+  <div class="container">
+    <h2>Submit Your E-Waste Request</h2>
+    <form id="wasteForm">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" placeholder="Enter your name" required />
+      <label for="address">Address</label>
+      <textarea id="address" placeholder="Enter your pickup address" required></textarea>
+      <label for="wasteType">Type of E-Waste</label>
+      <select id="wasteType" required>
+        <option value="">Select type</option>
+        <option value="Mobile Phones">Mobile Phones</option>
+        <option value="Computers">Computers / Laptops</option>
+        <option value="Television">Television</option>
+        <option value="Home Appliances">Home Appliances</option>
+        <option value="Others">Others</option>
+      </select>
+      <button type="submit">Submit Request</button>
+    </form>
+    <div id="responseMsg" class="success"></div>
+  </div>
+
+  <script>
+    document.getElementById('wasteForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const data = {
+        name: document.getElementById('name').value,
+        address: document.getElementById('address').value,
+        wasteType: document.getElementById('wasteType').value,
+      };
+      const response = await fetch('/submit_request', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data)
+      });
+      const result = await response.json();
+      document.getElementById('responseMsg').innerText = result.message;
+      document.getElementById('wasteForm').reset();
+    });
+  </script>
+</body>
+</html>

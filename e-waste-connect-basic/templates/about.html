@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About - E-Waste Connect</title>
+  <style>
+    body {font-family: Arial, sans-serif;margin: 0;background-color: rgba(243,244,246,0.7); background-image: url('https://loremflickr.com/1920/1080/electronics'); background-size: cover; background-attachment: fixed; background-position: center;}
+    header {background-color: #2e7d32;color: white;padding: 15px;text-align: center;}
+    nav {background-color: #4caf50;padding: 10px;text-align: center;}
+    nav a {color: white;margin: 0 15px;text-decoration: none;font-weight: bold;}
+    nav a:hover {text-decoration: underline;}
+    .container {max-width: 800px;margin: 40px auto;background: white;padding: 25px;border-radius: 10px;box-shadow: 0 0 10px rgba(0,0,0,0.1);}
+    h2 {text-align: center;color: #333;}
+    p {line-height: 1.6;color: #555;}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>E-Waste Connect</h1>
+    <p>Connecting Households with Formal E-Waste Recyclers</p>
+  </header>
+
+  <nav>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/services">Services</a>
+    <a href="/contact">Contact</a>
+    <a href="/login">Login</a>
+    <a href="/register">Register</a>
+    <a href="/recycler_login">Recycler Login</a>
+  </nav>
+
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 20px;">
+      <img src="{{ url_for('static', filename='image/ewaste1.png') }}" alt="E-Waste Connect Logo" style="max-width: 150px; height: auto;">
+    </div>
+    <h2>About E-Waste Connect</h2>
+    <p>E-Waste Connect is a platform designed to bridge the gap between households generating electronic waste and the formal recycling sector. Our mission is to promote responsible e-waste management by making it easy for individuals to schedule pickups and connect with certified recyclers.</p>
+    <p>We aim to reduce environmental pollution caused by improper disposal of electronics and support a circular economy through sustainable recycling practices.</p>
+    <p>Founded in [Year], we have partnered with leading recycling companies to ensure safe and efficient processing of e-waste.</p>
+  </div>
+</body>
+</html>
