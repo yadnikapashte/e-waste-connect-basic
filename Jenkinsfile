@@ -9,7 +9,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://your-git-repo-url.git', branch: 'main'
+                git url: 'https://github.com/yadnikapashte/e-waste-connect-basic.git', branch: 'main'
+
             }
         }
 
