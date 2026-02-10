@@ -1,38 +1,28 @@
 pipeline {
     agent any
 
-    tools {
-        jdk 'JDK11'          // Replace with your configured JDK name
-        maven 'Maven3'       // Replace with your configured Maven name
-    }
-
     stages {
         stage('Checkout') {
             steps {
                 git url: 'https://github.com/yadnikapashte/e-waste-connect-basic.git', branch: 'main'
-
             }
         }
 
         stage('Build') {
             steps {
-                sh 'mvn clean install'   // Maven build
+                bat 'mvn clean install'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'mvn test'           // Run tests
+                bat 'mvn test'
             }
         }
 
         stage('Deploy') {
             steps {
-                // Copy the WAR file to Tomcat webapps folder
-                sh 'cp target/e-waste-connect.war /path/to/tomcat/webapps/'
-                // Restart Tomcat to apply the deployment
-                sh '/path/to/tomcat/bin/shutdown.sh || true'
-                sh '/path/to/tomcat/bin/startup.sh'
+                bat 'copy target\\*.war C:\\Tomcat\\webapps\\'
             }
         }
     }
