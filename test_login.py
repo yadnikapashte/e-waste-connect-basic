@@ -1,20 +1,26 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 import time
 
 def test_login():
-    driver = webdriver.Chrome()
-    driver.maximize_window()
+
+    options = Options()
+    options.binary_location = "/usr/bin/google-chrome"
+
+    options.add_argument("--headless=new")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--remote-debugging-port=9222")
+
+    driver = webdriver.Chrome(options=options)
 
     driver.get("https://practicetestautomation.com/practice-test-login/")
 
-    username = driver.find_element(By.ID, "username")
-    password = driver.find_element(By.ID, "password")
-    submit = driver.find_element(By.ID, "submit")
-
-    username.send_keys("student")
-    password.send_keys("Password123")
-    submit.click()
+    driver.find_element(By.ID, "username").send_keys("student")
+    driver.find_element(By.ID, "password").send_keys("Password123")
+    driver.find_element(By.ID, "submit").click()
 
     time.sleep(3)
 
